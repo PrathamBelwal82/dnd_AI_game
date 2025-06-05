@@ -22,7 +22,7 @@ export default function DndForestUI() {
 
     console.log('Starting game for player:', player);
 
-    fetch(`http://localhost:3001/start-game?player=${encodeURIComponent(player)}`)
+    fetch(`https://dnd-ai-game.onrender.com/start-game?player=${encodeURIComponent(player)}`)
       .then(res => res.json())
       .then(data => {
         console.log('Start game response:', data);
@@ -57,7 +57,7 @@ export default function DndForestUI() {
   setInput('');
   setStory(prev => [...prev, `🧍 You: ${action}`]);
 
-  const res = await fetch('http://localhost:3001/player-action', {
+  const res = await fetch('https://dnd-ai-game.onrender.com/player-action', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ player, action }),

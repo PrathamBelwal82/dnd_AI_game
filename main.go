@@ -5,6 +5,7 @@ import (
 	"dnd_rpg/routes"
 	"github.com/gofiber/fiber/v2"
 	"log"
+	"os"
 )
 import "github.com/gofiber/fiber/v2/middleware/cors"
 
@@ -23,6 +24,10 @@ func main() {
 	// Register Routes
 	routes.SetupRoutes(app)
 
-	// Start Server
-	log.Fatal(app.Listen(":3001"))
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "10000" // Fallback for local dev
+	}
+
+	log.Fatal(app.Listen(":" + port))
 }
