@@ -13,7 +13,7 @@ func main() {
 	// Initialize Fiber
 	app := fiber.New()
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "*", // or your frontend origin
+		AllowOrigins: "*", 
 		AllowMethods: "GET,POST,OPTIONS",
 		AllowHeaders: "Content-Type",
 	}))
