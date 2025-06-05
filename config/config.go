@@ -9,10 +9,12 @@ import (
 	"gorm.io/gorm"
 	"dnd_rpg/models"
 )
+import "github.com/joho/godotenv"
 
 var DB *gorm.DB
 
 func ConnectDB() {
+	godotenv.Load()
 	host := os.Getenv("DB_HOST")
 	user := os.Getenv("DB_USER")
 	password := os.Getenv("DB_PASS")
@@ -20,7 +22,7 @@ func ConnectDB() {
 	port := os.Getenv("DB_PORT")
 
 	// sslmode=require is needed for Render PostgreSQL
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=require", host, user, password, dbname, port)
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", host, user, password, dbname, port)
 
 	var err error
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
